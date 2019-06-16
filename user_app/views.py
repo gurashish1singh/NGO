@@ -22,6 +22,17 @@ def homepage(request):
 #
 #     return render(request, 'user_app/user_signup.html', context)
 
+def user_create_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/profile')
+    else:
+        form = UserCreationForm()
+    return render(request, 'user_app/user_signup.html', {'form': form})
+
 
 def user_profile_view(request):
     form = UserProfile(request.POST or None)
@@ -49,17 +60,6 @@ def user_profile_view(request):
 #     else:
 #         form = SignUpForm()
 #     return render(request, 'user_app/user_signup.html', {'form': form})
-
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('/profile')
-    else:
-        form = UserCreationForm()
-    return render(request, 'user_app/user_signup.html', {'form': form})
 
 
 def donation_view(request):

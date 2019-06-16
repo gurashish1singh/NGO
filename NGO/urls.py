@@ -24,7 +24,7 @@ urlpatterns = [
     # Views from user_app
     path('', homepage),
     # path('signup/', create_user_view),
-    path('signup/', signup, name = 'Signup'),
+    path('signup/', user_create_view, name = 'Signup'),
     path('signup/profile/', user_profile_view),
     path('donationview/', donation_view)
 
