@@ -1,6 +1,7 @@
 from django.db import models
 
 
+# Extra details for the user
 class UserProfile(models.Model):
     First_Name = models.CharField(max_length=100)
     Last_Name = models.CharField(max_length=100)
@@ -17,3 +18,13 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.First_Name, self.Last_Name
+
+
+# For the admin to add or delete events
+class EventList(models.Model):
+    donation_type = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.donation_type
+
+
